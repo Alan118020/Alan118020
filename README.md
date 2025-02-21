@@ -8,3 +8,4 @@
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Alan118020/Alan118020/output/pacman_animation.svg">
   <img align="center" alt="Pac-Man Commit Animation" src="https://raw.githubusercontent.com/Alan118020/Alan118020/output/pacman_animation.svg">
 </picture>
+
