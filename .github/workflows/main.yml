@@ -1,0 +1,43 @@
+name: Pac-Man Commit Animation
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generate-pacman-animation:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: |
+        npm install --save pacman-svg
+
+    - name: Generate Pac-Man SVG
+      run: |
+        node -e "
+          const fs = require('fs');
+          const pacman = require('pacman-svg');
+          const animation = pacman({
+            commits: 20, // Número de commits que você quer visualizar na animação
+            size: 200, // Tamanho do Pac-Man
+            fill: '#FFFF00', // Cor do Pac-Man
+            background: '#000000' // Cor do fundo
+          });
+          fs.writeFileSync('pacman_animation.svg', animation);
+        "
+
+    - name: Commit and push generated Pac-Man SVG
+      run: |
+        git add pacman_animation.svg
+        git commit -m "Update Pac-Man animation"
+        git push
